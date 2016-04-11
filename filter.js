@@ -1,55 +1,49 @@
-
+/**
+ * Working
+ *  http://myanimelist.net
+ *  http://www.mangareader.net
+ *  http://www.mangahere.co
+ *  http://kissmanga.com
+ *  http://www.mangaeden.com
+ *  http://bato.to
+ *  http://mangapark.me
+ *  http://mangafox.me
+ */
 (function($) 
 {
-  var mangaList = [];
-
-  function createCORSRequest(method, url)
-  {
-      var xhr = new XMLHttpRequest();
-      if ("withCredentials" in xhr){
-          xhr.open(method, url, true);
-      } else if (typeof XDomainRequest != "undefined"){
-          xhr = new XDomainRequest();
-          xhr.open(method, url);
-      } else {
-          xhr = null;
-      }
-      return xhr;
-  }
-      
-  function getMangaList()
-  {
-          
-    var url = "ULRL_TO_XML";
-    var request = createCORSRequest( "get", url );
-    if ( request ){
-        request.onload = function(){parseMangaList(request.responseText);};
-        request.send();
-    }
-  }
-  function parseMangaList(list)
-  {
-    mangaList = [];
-    $("manga", list).each(function() {
-        if(parseInt($('series_status', this).text().trim()) != 6)
+    /**
+     * Function filter
+     * for filtering
+     */
+    function filter()
+    {
+        console.log("Filtering...");
+        var text = "";
+        var locator = getLocator();
+        if(mangaList != null && Object.prototype.toString.call( mangaList ) === '[object Array]')
         {
-            mangaList.push($('series_title', this).text().trim());
-            $.merge(mangaList, $('series_synonyms', this).text().trim().split("; "));
+            $(locator.all).each(function(index,Element){
+                text=$(Element).text().trim();
+                var i = $.inArray(text,mangaList);
+                if(i != -1){
+                    if(hidden) $(Element).closest(locator.closest).show();
+                    else $(Element).closest(locator.closest).hide();
+                    console.log(text);
+                }
+            });
+            console.log("Filtering done!");
         }
-    });
-    mangaList = mangaList.filter(Boolean);
-    $('table td:first-child').each(function(index,Element){
-        var tdValue=$(Element).text().trim();
-        var i = $.inArray(tdValue,mangaList);
-        if(i != -1){
-            if(hidden) $(Element).closest('tr').show();
-            else $(Element).closest('tr').hide();
-            console.log(tdValue);
-        }
-    });
-  
-  }
+        else console.error("Filtering failed! Given mangaList was not array!");
+    }
 
-  getMangaList();
+    function getLocator()
+    {
+        var locator = { all:"td a", closest: "tr"};
+        if(url.indexOf("mangareader") != -1) locator = { all:".manga_name a", closest: ".mangaresultitem"};
+        else if(url.indexOf("mangahere") != -1) locator = { all:".result_search dt a", closest: "dl"};
+        return locator;
+    }
+
+    filter();
 
 })(jQuery);

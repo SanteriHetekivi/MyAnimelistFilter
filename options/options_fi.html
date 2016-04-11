@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="/libs/jquery.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>MyAnimeList Suodatin Asetukset</h1>
+        MyAnimeList Käyttäjänimi:<br>
+        <input type="text" id="MyAnimeListUsername"><br>
+        <br>
+        Manga lista (XML):<br>
+        <input type="file" id="mangaList" /><br>
+        <a href="" id="MangaListLink"></a><br>
+        <br>
+        <form id="addSiteForm">
+            Lisää osoite auto suodatus listalle: <br>
+            <input type="url" id="addSite">
+        </form>
+        <br>
+        <h2>Automaattinen suodatus lista:</h2>
+        <div id="sites"></div>
+        <br>
+        <h2>Manga lista:</h2>
+        <button id="clearMangaList"></button>
+        <div id="mangaTable"></div>
+    </div>
+<script src="options.js"></script>
+</body>
+</html>

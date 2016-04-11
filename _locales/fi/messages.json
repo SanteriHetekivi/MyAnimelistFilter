@@ -1,0 +1,32 @@
+{
+  "appName": {
+    "message": "MyAnimeList Suodatin"
+  },
+  "appDesc": {
+    "message": "Poistaa mangat, jotka ovat listallasi tuetuilta sivuilta."
+  },
+  "Remove":{
+    "message":"Poista"
+  },
+  "optionsTitle": {
+    "message": "MyAnimeList Suodatin Asetukset"
+  },
+  "usernameLabel":{
+    "message":"MyAnimeList Käyttäjänimi:"
+  },
+  "mangaListLabel":{
+    "message":"Manga lista (XML):"
+  },
+  "addSiteLabel":{
+    "message":"Lisää osoite auto suodatus listalle:"
+  },
+  "autoFilterTitle":{
+    "message":"Automaattinen suodatus lista:"
+  },
+  "mangaListTitle":{
+    "message":"Manga lista:"
+  },
+  "Clear":{
+    "message":"Tyhjennä"
+  }
+}

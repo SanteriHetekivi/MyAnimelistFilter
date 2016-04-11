@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title data-i18n="optionsTitle"></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="/libs/jquery.js"></script>
+    <script src="/libs/bootstrap.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 data-i18n="optionsTitle"></h1>
+        <label data-i18n="usernameLabel" for="MyAnimeListUsername"></label>
+        <input type="text" id="MyAnimeListUsername"><br>
+        <br>
+        <label data-i18n="mangaListLabel" for="mangaList"></label>
+        <input type="file" id="mangaList" /><br>
+        <a href="" id="MangaListLink"></a><br>
+        <br>
+        <form id="addSiteForm">
+            <label data-i18n="addSiteLabel" for="addSite"></label>
+            <input type="url" id="addSite">
+        </form>
+        <br>
+        <h2 data-i18n="autoFilterTitle"></h2>
+        <div id="sites"></div>
+        <br>
+        <h2 data-i18n="mangaListTitle"></h2>
+        <button data-i18n="Clear" id="clearMangaList">Clear</button>
+        <div id="mangaTable"></div>
+    </div>
+<script src="options.js"></script>
+</body>
+</html>

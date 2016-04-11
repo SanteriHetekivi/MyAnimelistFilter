@@ -1,0 +1,43 @@
+{
+  "appName": {
+    "message": "MyAnimeList Filter",
+    "description": "The title of the application, displayed in the web store."
+  },
+  "appDesc": {
+    "message": "Removes manga in your list from supported sites.",
+    "description":"The description of the application, displayed in the web store."
+  },
+  "Remove":{
+    "message":"Remove",
+    "description":"Text for remove button."
+  },
+  "optionsTitle":{
+    "message":"MyAnimeList Filter Options",
+    "description":"Title for options page."
+  },
+  "usernameLabel":{
+    "message":"MyAnimeList Username:",
+    "description":"Label for MyAnimeList username input field."
+  },
+  "mangaListLabel":{
+    "message":"Manga list (XML):",
+    "description":"Label for adding uploading manga list."
+  },
+  "addSiteLabel":{
+    "message":"Add url to auto filter:",
+    "description":"Label for addSite input ."
+  },
+  "autoFilterTitle":{
+    "message":"Auto filter sites:",
+    "description":"Title for auto filter sites."
+  },
+  "mangaListTitle":{
+    "message":"Manga list:",
+    "description":"Title for manga list."
+  },
+  "Clear":{
+    "message":"Clear",
+    "description":"Word clear."
+  }
+
+}
