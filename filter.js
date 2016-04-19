@@ -11,6 +11,9 @@
  */
 (function($) 
 {
+    String.prototype.clean = function () {
+        return this.toLowerCase().replace(/[^a-z0-9]/g, "").trim();
+    };
     /**
      * Function filter
      * for filtering
@@ -23,7 +26,8 @@
         if(mangaList != null && Object.prototype.toString.call( mangaList ) === '[object Array]')
         {
             $(locator.all).each(function(index,Element){
-                text=$(Element).text().trim();
+                if(trimNames) text=$(Element).text().clean();
+                else text=$(Element).text().trim();
                 var i = $.inArray(text,mangaList);
                 if(i != -1){
                     if(hidden) $(Element).closest(locator.closest).show();

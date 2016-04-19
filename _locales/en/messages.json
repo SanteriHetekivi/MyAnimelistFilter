@@ -38,6 +38,9 @@
   "Clear":{
     "message":"Clear",
     "description":"Word clear."
+  },
+  "trimNamesLabel":{
+    "message":"Trim titles:",
+    "description":"Title for trimming checkbox."
   }
-
 }

@@ -1,6 +1,6 @@
-var hidden = false;
 var url = "";
 var mangaList = [];
+var trimNames = false;
 
 var hidden = {};
 
@@ -21,6 +21,11 @@ function getSites()
   return load("sites", []);
 }
 
+function getTrimNames()
+{
+  return load("trimNames", false);
+}
+
 function filter()
 {
   chrome.tabs.query({ currentWindow: true, active: true }, function (tabs)
@@ -31,7 +36,9 @@ function filter()
         chrome.tabs.executeScript(tab.id, { file: "libs/jquery.js" },
             function()
             {
-              chrome.tabs.executeScript(tab.id, {code: 'var hidden = '+hidden[tab.id]+'; var mangaList = '+JSON.stringify(mangaList)+'; var url = "'+url+'";'},
+              chrome.tabs.executeScript(tab.id, {code: 'var hidden = '+hidden[tab.id]+
+                '; var mangaList = '+JSON.stringify(mangaList)+'; var url = "'+url+'"; var trimNames = '+trimNames+';'
+              },
                   function()
                   {
                     hidden[tab.id] = !hidden[tab.id];
@@ -54,6 +61,8 @@ function newPage(tab)
     url = tab.url;
     var sites = getSites();
     mangaList = getMangaList();
+    trimNames = getTrimNames();
+
     if(mangaList.length > 0)
     {
       chrome.browserAction.enable(tab.id);

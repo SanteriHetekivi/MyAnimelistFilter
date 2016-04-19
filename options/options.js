@@ -6,6 +6,7 @@
 var username = "";
 var mangaList = [];
 var sites = [];
+var trimNames = false;
 
 const MY_ANIME_LIST_USERNAME  = "MyAnimeListUsername";
 const MANGA_LIST              = "mangaList";
@@ -15,6 +16,7 @@ const SITES                   = "sites";
 const ADD_SITE                = "addSite";
 const ADD_FORM                = "addSiteForm";
 const CLEAR_MANGA_LIST        = "clearMangaList";
+const TRIM_NAMES              = "trimNames";
 
 
 init();
@@ -35,6 +37,14 @@ Array.prototype.clean = function(deleteValue) {
     return this;
 };
 
+String.prototype.clean = function () {
+    return this.toLowerCase().replace(/[^a-z0-9]/g, "").trim();
+};
+
+String.prototype.empty = function () {
+    return (!this || this.length === 0);
+};
+
 function clearMangaList()
 {
     mangaList = [];
@@ -45,9 +55,10 @@ function clearMangaList()
 function saveMangaList(e)
 {
     var files = e.target.files;
+    trimNames = document.getElementById(TRIM_NAMES).checked;
     var reader = new FileReader();
     reader.onload = function() {
-        var parsed = new DOMParser().parseFromString(this.result, "text/xml");
+        var parsed = new DOMParser().parseFromString(this.result.toString(), "text/xml");
         parseMangaList(parsed);
     };
     reader.readAsText(files[0]);
@@ -106,12 +117,28 @@ function saveMyAnimeListUsername()
 function parseMangaList(list)
 {
     var newMangaList = [];
+    var title = "";
+    var synonyms = [];
+    var subTitle = "";
     $("manga", list).each(function() {
         if(parseInt($('series_status', this).text().trim()) != 6)
         {
-            newMangaList.push($('series_title', this).text().trim());
-
-            $.merge(newMangaList, $('series_synonyms', this).text().trim().split("; "));
+            if(trimNames) title = $('series_title', this).text().clean();
+            else title = $('series_title', this).text().trim();
+            synonyms = $('series_synonyms', this).text().trim().split("; ");
+            for(var i = 0; i < synonyms.length; ++i)
+            {
+                if(trimNames) subTitle = synonyms[i].clean();
+                else subTitle = synonyms[i].trim();
+                if(subTitle.empty())
+                {
+                    synonyms.splice(i, 1);
+                    --i;
+                }
+                else synonyms[i] = subTitle;
+            }
+            if(!title.empty()) newMangaList.push(title);
+            $.merge(newMangaList, synonyms);
         }
     });
     newMangaList = newMangaList.clean("");
@@ -119,6 +146,7 @@ function parseMangaList(list)
     {
         mangaList = newMangaList;
         save(MANGA_LIST, mangaList);
+        save(TRIM_NAMES, trimNames);
         makeMangaTable();
     }
 }
@@ -166,7 +194,9 @@ function init()
     mangaList = load(MANGA_LIST, []);
     sites = load(SITES, []);
     username = load(MY_ANIME_LIST_USERNAME, "UserName");
+    trimNames = load(TRIM_NAMES, false);
     document.getElementById(MY_ANIME_LIST_USERNAME).value = username;
+    document.getElementById(TRIM_NAMES).checked = trimNames;
     setMangaListLink();
     makeSites();
     makeMangaTable();

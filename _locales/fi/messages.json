@@ -28,5 +28,8 @@
   },
   "Clear":{
     "message":"Tyhjennä"
+  },
+  "trimNamesLabel":{
+    "message":"Puhdista nimet:"
   }
 }
