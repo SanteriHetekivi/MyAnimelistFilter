@@ -3,6 +3,10 @@
     "message": "MyAnimeList Filter",
     "description": "The title of the application, displayed in the web store."
   },
+  "shortName": {
+    "message": "MAL Filter",
+    "description": "Short version of the extension's name."
+  },
   "appDesc": {
     "message": "Removes manga in your list from supported sites.",
     "description":"The description of the application, displayed in the web store."

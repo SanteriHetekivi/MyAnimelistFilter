@@ -2,6 +2,9 @@
   "appName": {
     "message": "MyAnimeList Suodatin"
   },
+  "shortName": {
+    "message": "MAL Suodatin"
+  },
   "appDesc": {
     "message": "Poistaa mangat, jotka ovat listallasi tuetuilta sivuilta."
   },
